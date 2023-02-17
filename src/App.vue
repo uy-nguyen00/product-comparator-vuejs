@@ -1,6 +1,8 @@
 <template>
   <the-header/>
-  <router-view></router-view>
+  <div class="layout">
+    <router-view></router-view>
+  </div>
   <the-footer/>
 </template>
 
@@ -11,6 +13,9 @@ import TheFooter from "@/components/layout/TheFooter.vue";
 export default {
   name: 'App',
   components: {TheFooter, TheHeader},
+  mounted() {
+
+  }
 }
 </script>
 
@@ -19,8 +24,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.layout {
+  max-width: 40rem;
+  margin: 2rem auto;
 }
 </style>

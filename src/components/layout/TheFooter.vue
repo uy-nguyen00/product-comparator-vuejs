@@ -1,5 +1,5 @@
 <template>
-  <span></span>
+  THE FOOTER
 </template>
 
 <script>

@@ -1,34 +1,27 @@
 <template>
-  <span v-if="isLoaded">Loading</span>
+  <div v-if="isLoading">
+    LOADING
+  </div>
+
   <div v-else>
-    {{ product.brand }}
+    {{ product.brand }} {{ product.model }}
   </div>
 </template>
 
 <script>
 import axios from "axios";
-const axiosInstance = axios.create({
-  baseURL: 'https://productcomparator-a082.restdb.io/rest/',
-  headers: {
-    'cache-control': 'no-cache',
-    'x-apikey': '65b115cbca07970e6d0079ebf747d26ad5fac',
-    'content-type': 'application/json'
-  },
-  json: true
-});
-const collection = 'products';
 
 export default {
   name: "ProductDetail",
   data() {
     return {
-      isLoaded: false,
+      isLoading: true,
       product: {}
     }
   },
   async mounted() {
-    this.product = await axiosInstance.get(collection + `?q={"id":"${this.$router.params.id}"}`);
-    this.isLoaded = true;
+    this.product = (await axios.get(`http://localhost:3000/product/${this.$route.params.id}`)).data.product;
+    this.isLoading = false;
   }
 }
 </script>
