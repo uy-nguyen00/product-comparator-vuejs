@@ -3,7 +3,7 @@
     LOADING
   </div>
 
-  <div v-else>
+  <div v-else class="grid">
     <router-link v-for="product in products" :key="product.id" :to="{name: 'ProductDetail', params: {id: product.id}}">
       <base-card>
         <product-item :brand="product.brand"
@@ -13,7 +13,8 @@
                       :height="product.height"
                       :refresh-rate="product.refreshRate"
                       :connectivity="product.connectivity"
-                      :image="product.image">
+                      :image="product.image"
+                      :price="product.price">
         </product-item>
         <div class="controls">
           <base-button mode="outline">action1</base-button>
@@ -25,7 +26,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 import ProductItem from "@/components/products/ProductItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
@@ -45,8 +45,8 @@ export default {
     ProductItem
   },
   async mounted() {
-    this.products = (await axios.get('http://localhost:3000/product/all')).data.products;
-    this.$store.dispatch('products/setProducts', this.products);
+    await this.$store.dispatch('products/loadProducts');
+    this.products = this.$store.getters['products/getProducts'];
     this.isLoading = false;
   }
 }
@@ -72,12 +72,19 @@ ul {
 }
 
 .controls {
-  display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 20px;
 }
 
 a, a:active {
   text-decoration: none;
   color: black;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
 }
 </style>

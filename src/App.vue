@@ -1,4 +1,8 @@
 <template>
+  <head>
+    <title>Monitor Scout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
   <the-header/>
   <div class="layout">
     <router-view></router-view>
@@ -12,10 +16,7 @@ import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
   name: 'App',
-  components: {TheFooter, TheHeader},
-  mounted() {
-
-  }
+  components: {TheFooter, TheHeader}
 }
 </script>
 
@@ -28,7 +29,7 @@ export default {
 }
 
 .layout {
-  max-width: 40rem;
+  max-width: 60rem;
   margin: 2rem auto;
 }
 </style>

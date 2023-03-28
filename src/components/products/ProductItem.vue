@@ -2,18 +2,21 @@
   <div>
     <img :src="image" :alt="model"/>
     <h3>{{ title }}</h3>
-    <h4>{{ resolution }} pixels</h4>
+    <base-badge :price="price"></base-badge>
+    <p>{{ resolution }} pixels</p>
     <p>{{ size }} inches</p>
     <p>{{ refreshRate }} Hz</p>
-    <p>
-      <span v-for="(c, index) in connectivity" :key="index"> {{ c }}, </span>
-    </p>
+    <p>{{ connectivity.toString() }}</p>
   </div>
 </template>
 
 <script>
+import BaseBadge from "@/components/ui/BaseBadge.vue";
+import textHelper from "@/script/textHelper"
+
 export default {
   name: "ProductCard",
+  components: {BaseBadge},
   props: {
     brand: String,
     model: String,
@@ -22,14 +25,15 @@ export default {
     height: Number,
     refreshRate: Number,
     connectivity: Array,
-    image: String
+    image: String,
+    price: Number
   },
   computed: {
     title() {
       return this.brand + ' ' + this.model;
     },
     resolution() {
-      return this.width + ' x ' + this.height
+      return textHelper.calculateResolution(this.width, this.height);
     }
   }
 }
@@ -50,6 +54,7 @@ h3 {
 h3,
 h4 {
   margin: 0.5rem 0;
+  text-align: center;
 }
 
 div {
@@ -59,5 +64,11 @@ div {
 .actions {
   display: flex;
   justify-content: flex-end;
+}
+
+img {
+  width: 50%;
+  display: block;
+  margin: auto;
 }
 </style>
