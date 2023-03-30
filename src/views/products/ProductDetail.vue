@@ -3,7 +3,7 @@
     LOADING
   </div>
 
-  <div v-else>
+  <base-card v-else>
     <h3>{{ product.formattedTitle }}</h3>
     <div @click="toggleShowProducts">
       <base-button mode="outline">Add to comparison</base-button>
@@ -22,7 +22,7 @@
 
       <base-card v-if="comparisonResult">
         <section>
-          <p>Result</p>
+          <h3>Result</h3>
           <table>
             <tr>
               <th style="width:50%">Criteria</th>
@@ -49,7 +49,7 @@
         </section>
       </base-card>
     </div>
-  </div>
+  </base-card>
 </template>
 
 <script>

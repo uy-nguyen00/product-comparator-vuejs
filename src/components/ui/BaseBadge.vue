@@ -14,10 +14,10 @@ export default {
         return 'mythic';
       }
       if (this.price >= 500 && this.price <= 1000) {
-        return 'epic';
+        return 'rare';
       }
       else {
-        return 'rare';
+        return 'epic';
       }
     },
     content() {
@@ -32,23 +32,22 @@ export default {
   background-color: #ccc;
   color: #252525;
   border-radius: 30px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.3rem 1rem;
   display: inline-block;
-  margin-right: 0.5rem;
 }
 
 .mythic {
-  background-color: #ffd700;
+  background-color: #FF8C00;
   color: white;
 }
 
 .epic {
-  background-color: #ADD8E6;
+  background-color: #6495ED;
   color: white;
 }
 
 .rare {
-  background-color: #8d006e;
+  background-color: #EE82EE;
   color: white;
 }
 </style>

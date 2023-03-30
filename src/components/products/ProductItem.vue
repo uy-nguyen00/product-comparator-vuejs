@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img :src="image" :alt="model"/>
-    <h3>{{ title }}</h3>
+    <img :src="image" :alt="model" class="center"/>
+    <h4>{{ title }}</h4>
     <base-badge :price="price"></base-badge>
     <p>{{ resolution }} pixels</p>
     <p>{{ size }} inches</p>
@@ -47,11 +47,6 @@ div {
   padding: 1rem;
 }
 
-h3 {
-  font-size: 1.5rem;
-}
-
-h3,
 h4 {
   margin: 0.5rem 0;
   text-align: center;
@@ -67,8 +62,12 @@ div {
 }
 
 img {
-  width: 50%;
+  width: 80%;
+  height: 30%;
   display: block;
+}
+
+.center {
   margin: auto;
 }
 </style>

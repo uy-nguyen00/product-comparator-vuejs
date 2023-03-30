@@ -5,7 +5,7 @@
 
   <div v-else class="grid">
     <router-link v-for="product in products" :key="product.id" :to="{name: 'ProductDetail', params: {id: product.id}}">
-      <base-card>
+      <base-card class="product-card">
         <product-item :brand="product.brand"
                       :model="product.model"
                       :size="product.size"
@@ -86,5 +86,9 @@ a, a:active {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 10px;
+}
+
+.product-card {
+  min-height: 550px;
 }
 </style>

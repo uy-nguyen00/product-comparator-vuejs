@@ -2,14 +2,20 @@
   <header>
     <nav>
       <h1>
-        <router-link to="/">Monitor Scout</router-link>
+        <router-link to="/">Monitor Radar</router-link>
       </h1>
       <ul>
         <li>
           <router-link to="/products">All Monitors</router-link>
         </li>
-        <li>
-          <router-link to="">Coming Soon</router-link>
+        <li v-if="!isAuthenticated">
+          <router-link to="/authentication">Login / Signup</router-link>
+        </li>
+        <li v-if="isAuthenticated">
+          <router-link to="/product/add">Add Product</router-link>
+        </li>
+        <li v-if="isAuthenticated">
+          <router-link to="/" @click="logout">Logout</router-link>
         </li>
       </ul>
     </nav>
@@ -18,7 +24,17 @@
 
 <script>
 export default {
-  name: "TheHeader"
+  name: "TheHeader",
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters['users/isAuthenticated'];
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('users/logout');
+    }
+  }
 }
 </script>
 
