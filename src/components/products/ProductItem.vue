@@ -2,10 +2,15 @@
   <div>
     <img :src="image" :alt="model" class="center"/>
     <h4>{{ title }}</h4>
+
     <base-badge :price="price"></base-badge>
-    <p>{{ resolution }} pixels</p>
+
     <p>{{ size }} inches</p>
+
+    <p>{{ resolution }} pixels</p>
+
     <p>{{ refreshRate }} Hz</p>
+
     <p>{{ connectivity.toString() }}</p>
   </div>
 </template>

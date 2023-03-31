@@ -1,10 +1,11 @@
 <template>
   <div v-if="isLoading">
-    LOADING
+    <base-spinner></base-spinner>
   </div>
 
   <base-card v-else>
     <h3>{{ product.formattedTitle }}</h3>
+
     <div @click="toggleShowProducts">
       <base-button mode="outline">Add to comparison</base-button>
     </div>
@@ -17,33 +18,36 @@
       </select>
 
       <section v-if="!comparisonResult">
-        LOADING>>>
+        <base-spinner></base-spinner>
       </section>
 
       <base-card v-if="comparisonResult">
         <section>
           <h3>Result</h3>
+
           <table>
             <tr>
               <th style="width:50%">Criteria</th>
               <th>{{ product.formattedTitle }}</th>
               <th>{{ selectedProduct.formattedTitle }}</th>
             </tr>
+
             <tr v-for="(data, criteria) in comparisonResult" :key="criteria">
               <td>{{ criteria }}</td>
+
               <td>
                 <i class="fa fa-remove" v-if="data.value < 1"></i>
                 <i class="fa fa-check" v-else></i>
 
                 <p>{{ data.p1 }}</p>
               </td>
+
               <td>
                 <i class="fa fa-check" v-if="data.value <= 1"></i>
                 <i class="fa fa-remove" v-else></i>
 
                 <p>{{ data.p2 }}</p>
               </td>
-
             </tr>
           </table>
         </section>
@@ -56,10 +60,11 @@
 import axios from "axios";
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
+import BaseSpinner from "@/components/ui/BaseSpinner.vue";
 
 export default {
   name: "ProductDetail",
-  components: {BaseCard, BaseButton},
+  components: {BaseSpinner, BaseCard, BaseButton},
   data() {
     return {
       isLoading: true,

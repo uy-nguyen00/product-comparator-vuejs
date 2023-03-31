@@ -12,7 +12,7 @@
           <router-link to="/authentication">Login / Signup</router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link to="/product/add">Add Product</router-link>
+          <router-link to="/product/create-update/new">Add Product</router-link>
         </li>
         <li v-if="isAuthenticated">
           <router-link to="/" @click="logout">Logout</router-link>

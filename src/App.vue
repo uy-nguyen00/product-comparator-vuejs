@@ -16,7 +16,10 @@ import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
   name: 'App',
-  components: {TheFooter, TheHeader}
+  components: {TheFooter, TheHeader},
+  created() {
+    this.$store.dispatch('users/tryLogin');
+  }
 }
 </script>
 

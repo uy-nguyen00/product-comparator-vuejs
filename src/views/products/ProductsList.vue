@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoading">
-    LOADING
+    <base-spinner></base-spinner>
   </div>
 
   <div v-else class="grid">
@@ -17,8 +17,8 @@
                       :price="product.price">
         </product-item>
         <div class="controls">
-          <base-button mode="outline">action1</base-button>
-          <base-button>action2</base-button>
+          <base-button mode="outline">View Details</base-button>
+          <base-button v-if="isAuthenticated" link :to="'/product/create-update/' + product.id">Edit</base-button>
         </div>
       </base-card>
     </router-link>
@@ -30,6 +30,7 @@
 import ProductItem from "@/components/products/ProductItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
+import BaseSpinner from "@/components/ui/BaseSpinner.vue";
 
 export default {
   name: "ProductsListView",
@@ -40,9 +41,15 @@ export default {
     }
   },
   components: {
+    BaseSpinner,
     BaseButton,
     BaseCard,
     ProductItem
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters['users/isAuthenticated'];
+    }
   },
   async mounted() {
     await this.$store.dispatch('products/loadProducts');
@@ -79,7 +86,6 @@ ul {
 
 a, a:active {
   text-decoration: none;
-  color: black;
 }
 
 .grid {
